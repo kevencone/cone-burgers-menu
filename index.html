@@ -69,12 +69,12 @@
   .intro-bg{position:absolute;inset:0;overflow:hidden;}
   .intro-bg span{
     position:absolute;font-family:var(--display);font-size:clamp(90px,20vw,300px);
-    color:transparent;-webkit-text-stroke:2px rgba(13,3,0,.28);white-space:nowrap;
+    color:rgba(13,3,0,.16);white-space:nowrap;
     letter-spacing:.01em;line-height:.8;text-transform:uppercase;
     animation:slide 16s linear infinite;
   }
   .intro-bg span:nth-child(1){top:4%;left:-10%;}
-  .intro-bg span:nth-child(2){top:36%;left:-30%;animation-duration:22s;color:rgba(13,3,0,.14);-webkit-text-stroke:0;}
+  .intro-bg span:nth-child(2){top:36%;left:-30%;animation-duration:22s;color:rgba(13,3,0,.10);}
   .intro-bg span:nth-child(3){bottom:4%;left:-20%;animation-duration:19s;}
   @keyframes slide{from{transform:translateX(0)}to{transform:translateX(40%)}}
   .logo-stack{position:relative;z-index:2;text-align:center;}
@@ -88,7 +88,7 @@
   .logo-word{font-family:var(--display);font-size:clamp(58px,13vw,150px);line-height:.84;letter-spacing:.005em;color:var(--ink);text-transform:uppercase;}
   .logo-word .l{display:inline-block;opacity:0;transform:translateY(48px) skewY(4deg);animation:letterIn .45s var(--ease) forwards;}
   @keyframes letterIn{to{opacity:1;transform:translateY(0) skewY(0)}}
-  .logo-word .accent{color:transparent;-webkit-text-stroke:3px var(--ink);}
+  .logo-word .accent{color:var(--paper);text-shadow:5px 5px 0 var(--ink);}
   .logo-tag{
     font-family:var(--mono);font-size:11px;letter-spacing:.5em;color:var(--ink);
     margin-top:18px;text-transform:uppercase;padding-left:.5em;font-weight:600;
@@ -117,7 +117,7 @@
   .brand-mark{width:34px;height:34px;}
   .brand-mark svg{width:100%;height:100%;}
   .brand-name{font-family:var(--display);font-size:26px;letter-spacing:.02em;line-height:1;text-transform:uppercase;}
-  .brand-name .accent{color:transparent;-webkit-text-stroke:1.6px var(--ink);}
+  .brand-name .accent{color:var(--paper);}
   .head-status{
     display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:10px;
     color:var(--ink);letter-spacing:.18em;text-transform:uppercase;font-weight:600;
@@ -170,7 +170,7 @@
     content:"CONE CONE CONE CONE CONE CONE";
     position:absolute;top:0;left:-5%;width:200%;
     font-size:clamp(120px,22vw,320px);line-height:.82;letter-spacing:.02em;
-    color:transparent;-webkit-text-stroke:2px rgba(13,3,0,.10);
+    color:rgba(13,3,0,.07);
     white-space:normal;word-break:break-all;
   }
   .hero-left{position:relative;z-index:2;}
@@ -190,14 +190,13 @@
   .hero h1 .line:nth-child(3)>span{animation-delay:.39s;}
   @keyframes lineUp{to{transform:translateY(0)}}
   .hero h1 .accent{color:var(--paper);text-shadow:4px 4px 0 var(--ink);}
-  .hero h1 .thin{color:transparent;-webkit-text-stroke:2.5px var(--ink);transition:color .3s;}
-  .hero h1 .thin:hover{color:var(--ink);}
+  .hero h1 .thin{color:var(--paper);text-shadow:4px 4px 0 var(--ink);}
   .hero-sub{
     margin-top:24px;max-width:410px;color:var(--ink);font-size:16px;line-height:1.55;font-weight:400;
     opacity:0;animation:hUp .6s ease .55s forwards;
   }
   .hero-sub b{font-weight:700;background:var(--ink);color:var(--orange);padding:0 5px;}
-  .hero-cta{margin-top:26px;display:flex;gap:14px;flex-wrap:wrap;align-items:center;opacity:0;animation:hUp .6s ease .68s forwards;}
+  .hero-cta{margin-top:30px;display:flex;flex-direction:column;gap:16px;align-items:center;justify-content:center;opacity:0;animation:hUp .6s ease .68s forwards;}
   .btn-primary{
     background:var(--ink);color:var(--orange);border:2px solid var(--ink);cursor:pointer;font-family:var(--display);
     font-size:19px;letter-spacing:.06em;padding:14px 28px;text-transform:uppercase;
@@ -214,11 +213,6 @@
     cursor:pointer;border:none;background:none;border-bottom:2px solid var(--ink);padding-bottom:3px;transition:.2s;
   }
   .scroll-link:hover{background:var(--ink);color:var(--orange);}
-  .hero-stats{display:flex;margin-top:36px;opacity:0;animation:hUp .6s ease .8s forwards;}
-  .stat{padding-right:26px;margin-right:26px;border-right:2px solid var(--ink);}
-  .stat:last-child{border-right:none;margin-right:0;padding-right:0;}
-  .stat .n{font-family:var(--display);font-size:46px;color:var(--ink);line-height:.9;}
-  .stat .l{font-family:var(--mono);font-size:10px;color:var(--ink);letter-spacing:.18em;text-transform:uppercase;margin-top:6px;font-weight:600;}
   @keyframes hUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
   .hero-visual{position:relative;z-index:2;aspect-ratio:4/5;}
   .hero-visual .frame{
@@ -293,7 +287,7 @@
   .section{padding-top:54px;scroll-margin-top:160px;}
   .sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:26px;border-bottom:3px solid var(--ink);padding-bottom:10px;}
   .sec-head h2{font-family:var(--display);font-size:clamp(44px,8vw,80px);letter-spacing:.01em;text-transform:uppercase;line-height:.86;color:var(--ink);}
-  .sec-head .accent{color:transparent;-webkit-text-stroke:2px var(--ink);}
+  .sec-head .accent{color:var(--paper);text-shadow:3px 3px 0 var(--ink);}
   .sec-head .count{margin-left:auto;font-family:var(--mono);font-size:11px;color:var(--ink);letter-spacing:.2em;text-transform:uppercase;font-weight:600;}
   .no-results{
     padding:60px 20px;text-align:center;border:3px dashed var(--ink);
@@ -533,10 +527,21 @@
   .wa-btn svg{width:19px;height:19px;flex:none;}
   .t-note{font-family:var(--mono);font-size:9px;color:rgba(13,3,0,.5);letter-spacing:.14em;text-align:center;margin-top:10px;text-transform:uppercase;font-weight:600;}
 
+  /* checkout: datos del cliente */
+  .ckout{display:flex;flex-direction:column;gap:6px;margin:12px 0 2px;}
+  .ckout .ck-lab{font-family:var(--mono);font-size:10px;letter-spacing:.24em;text-transform:uppercase;font-weight:600;color:var(--ink);}
+  .ckout input{
+    width:100%;background:var(--paper);border:2px solid var(--ink);color:var(--ink);
+    font-family:var(--body);font-size:14px;padding:11px 12px;outline:none;transition:background .2s,border-color .2s;
+  }
+  .ckout input:focus{background:var(--paper-warm);}
+  .ckout input::placeholder{color:rgba(13,3,0,.4);}
+  .ckout input.err{border-color:#C40000;background:#FFECEC;}
+
   /* ============ FOOTER ============ */
   footer{border-top:3px solid var(--ink);padding:44px 20px;text-align:center;background:var(--ink);color:var(--orange);}
   footer .fmark{font-family:var(--display);font-size:38px;letter-spacing:.02em;text-transform:uppercase;}
-  footer .fmark .accent{color:transparent;-webkit-text-stroke:1.6px var(--orange);}
+  footer .fmark .accent{color:var(--paper);}
   footer .fmeta{font-family:var(--mono);font-size:10px;color:rgba(255,61,0,.6);letter-spacing:.3em;text-transform:uppercase;margin-top:10px;font-weight:600;}
   footer .demo-tag{font-family:var(--mono);font-size:10px;color:rgba(255,244,239,.5);letter-spacing:.2em;margin-top:18px;}
   footer .demo-tag b{color:var(--orange);}
@@ -571,6 +576,12 @@
   }
   @media(max-width:520px){
     .head-status{display:none;}
+    .head-row{padding:12px 14px;gap:10px;}
+    .brand{gap:8px;}
+    .brand-mark{width:28px;height:28px;}
+    .brand-name{font-size:21px;letter-spacing:.01em;}
+    .cart-btn{padding:10px 13px;gap:0;}
+    .cart-btn .cart-txt{display:none;}
     .grid{grid-template-columns:1fr 1fr;gap:12px;}
     .card-title{font-size:20px;}
     .card-desc{font-size:11.5px;-webkit-line-clamp:2;}
@@ -579,8 +590,6 @@
     .add{padding:8px 10px;font-size:10px;box-shadow:2px 2px 0 var(--ink);}
     .add .add-txt{display:none;}
     .hero h1{font-size:clamp(56px,16vw,84px);}
-    .stat{padding-right:16px;margin-right:16px;}
-    .stat .n{font-size:36px;}
     .kcal{font-size:9px;padding:4px 7px;}
   }
 
@@ -588,7 +597,7 @@
     *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important;}
     html{scroll-behavior:auto;}
     .card{opacity:1;transform:none;}
-    .hero-tag,.hero-sub,.hero-cta,.hero-stats,.hero-visual .frame,.hero-visual .price-chip,.hero-visual .float-tag{opacity:1;}
+    .hero-tag,.hero-sub,.hero-cta,.hero-visual .frame,.hero-visual .price-chip,.hero-visual .float-tag{opacity:1;}
     .hero h1 .line>span{transform:none;}
   }
 </style>
@@ -638,7 +647,7 @@
     <div class="head-status"><span class="dot"></span> Cocina abierta · 11:00 – 22:00</div>
     <button class="cart-btn" id="cartBtn" aria-label="Abrir pedido">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
-      <span>Pedido</span>
+      <span class="cart-txt">Pedido</span>
       <span class="cart-count" id="cartCount">0</span>
     </button>
   </div>
@@ -666,11 +675,6 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
       </button>
       <button class="scroll-link" id="heroScroll">20 platillos disponibles</button>
-    </div>
-    <div class="hero-stats">
-      <div class="stat"><div class="n">100%</div><div class="l">Res fresca</div></div>
-      <div class="stat"><div class="n">15<span style="font-size:24px">min</span></div><div class="l">A la mesa</div></div>
-      <div class="stat"><div class="n">4.9</div><div class="l">★ Rating</div></div>
     </div>
   </div>
   <div class="hero-visual">
@@ -771,7 +775,7 @@
       <button data-t="Domicilio">🛵 Domicilio</button>
     </div>
     <div class="odetail show" id="odetail">
-      <input type="text" id="oInput" placeholder="Número de mesa" inputmode="numeric">
+      <input type="text" id="oInput" placeholder="Número de mesa (opcional)" inputmode="numeric">
     </div>
   </div>
   <div class="drawer-items" id="drawerItems"></div>
@@ -779,6 +783,11 @@
     <div id="upsellSlot"></div>
     <div class="t-row"><span id="tItems">0 productos</span><span id="tSub">Q0</span></div>
     <div class="t-row total"><span class="lab">Total</span><span class="amt" id="cartTotal">Q0</span></div>
+    <div class="ckout">
+      <div class="ck-lab">Tus datos</div>
+      <input type="text" id="ckName" placeholder="Tu nombre *" autocomplete="name" maxlength="60">
+      <input type="text" id="ckAddr" placeholder="Dirección de entrega *" autocomplete="street-address" maxlength="120" style="display:none">
+    </div>
     <button class="wa-btn" id="waBtn" disabled>
       <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.2-.7.1s-.7 1-.9 1.2c-.2.2-.3.2-.6.1-1.7-.9-2.9-1.6-4-3.5-.3-.5.3-.5.8-1.6.1-.2 0-.4 0-.5s-.7-1.6-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4s-1 1-1 2.4 1 2.8 1.2 3 2 3.1 4.9 4.3c1.8.8 2.5.9 3.4.7.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4 0-.1-.2-.2-.5-.3zM12 2a10 10 0 0 0-8.7 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2z"/></svg>
       Enviar pedido por WhatsApp
@@ -1157,17 +1166,30 @@ document.getElementById("closeCart").onclick=closeCart;
 overlay.onclick=closeCart;
 addEventListener("keydown",e=>{if(e.key==="Escape"){closeCart();closeSheet();}});
 
-/* order type */
+/* order type + datos del cliente */
 const oInput=document.getElementById("oInput");
+const odetailEl=document.getElementById("odetail");
+const ckName=document.getElementById("ckName");
+const ckAddr=document.getElementById("ckAddr");
+try{
+  ckName.value=localStorage.getItem("cone_ck_name")||"";
+  ckAddr.value=localStorage.getItem("cone_ck_addr")||"";
+}catch{}
+function syncOrderType(){
+  odetailEl.classList.toggle("show",orderType==="Mesa");
+  ckAddr.style.display=orderType==="Domicilio"?"block":"none";
+  if(orderType!=="Mesa")oInput.value="";
+}
 document.querySelectorAll("#otype button").forEach(b=>{
   b.onclick=()=>{
     orderType=b.dataset.t;
     document.querySelectorAll("#otype button").forEach(x=>x.classList.toggle("on",x===b));
-    const ph={Mesa:"Número de mesa",Recoger:"Nombre para recoger",Domicilio:"Dirección de entrega"}[orderType];
-    oInput.placeholder=ph;oInput.value="";
-    oInput.inputMode=orderType==="Mesa"?"numeric":"text";
+    syncOrderType();
   };
 });
+syncOrderType();
+ckName.addEventListener("input",()=>ckName.classList.remove("err"));
+ckAddr.addEventListener("input",()=>ckAddr.classList.remove("err"));
 
 function showToast(msg){toast.textContent=msg;toast.classList.add("show");clearTimeout(toast._t);toast._t=setTimeout(()=>toast.classList.remove("show"),1500);}
 
@@ -1244,10 +1266,23 @@ function delLine(i){cart.splice(i,1);renderCart();}
 /* WhatsApp */
 document.getElementById("waBtn").onclick=()=>{
   if(!cart.length)return;
+  const name=ckName.value.trim();
+  const addr=ckAddr.value.trim();
+  let bad=null;
+  if(!name){ckName.classList.add("err");bad=ckName;}
+  if(orderType==="Domicilio"&&!addr){ckAddr.classList.add("err");bad=bad||ckAddr;}
+  if(bad){showToast("Completa tus datos ✎");bad.focus();return;}
+  try{
+    localStorage.setItem("cone_ck_name",name);
+    localStorage.setItem("cone_ck_addr",addr);
+  }catch{}
   let total=0;
   const on=document.getElementById("orderNum").textContent;
   let lines=[`*COMANDA #${on} — CONEBURGERS*`,""];
-  lines.push(`*Tipo:* ${orderType}${oInput.value?` — ${oInput.value}`:""}`,"");
+  lines.push(`*Cliente:* ${name}`);
+  lines.push(`*Tipo:* ${orderType}${orderType==="Mesa"&&oInput.value?` — Mesa ${oInput.value}`:""}`);
+  if(orderType==="Domicilio")lines.push(`*Dirección:* ${addr}`);
+  lines.push("");
   cart.forEach(l=>{
     const m=byId(l.pid);const lp=linePrice(l);total+=lp;
     lines.push(`${l.qty}x ${m.name} — ${fmt(lp)}`);
