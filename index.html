@@ -116,7 +116,7 @@
   .brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit;}
   .brand-mark{width:34px;height:34px;}
   .brand-mark svg{width:100%;height:100%;}
-  .brand-name{font-family:var(--display);font-size:26px;letter-spacing:.02em;line-height:1;text-transform:uppercase;}
+  .brand-name{font-family:var(--display);font-size:25px;letter-spacing:.02em;line-height:1.15;text-transform:uppercase;padding-top:1px;}
   .brand-name .accent{color:var(--paper);}
   .head-status{
     display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:10px;
@@ -182,8 +182,8 @@
   }
   .hero-tag::before{content:"";width:8px;height:8px;background:var(--orange);animation:pulse2 1.8s ease infinite;}
   @keyframes pulse2{50%{opacity:.4}}
-  .hero h1{font-family:var(--display);font-size:clamp(64px,10vw,138px);line-height:.82;letter-spacing:.005em;text-transform:uppercase;color:var(--ink);}
-  .hero h1 .line{display:block;overflow:hidden;}
+  .hero h1{font-family:var(--display);font-size:clamp(60px,9.5vw,130px);line-height:.88;letter-spacing:.005em;text-transform:uppercase;color:var(--ink);}
+  .hero h1 .line{display:block;overflow:hidden;padding:0 .1em .1em 0;margin-bottom:-.05em;}
   .hero h1 .line>span{display:block;transform:translateY(105%);animation:lineUp .8s cubic-bezier(.16,1,.3,1) forwards;}
   .hero h1 .line:nth-child(1)>span{animation-delay:.15s;}
   .hero h1 .line:nth-child(2)>span{animation-delay:.27s;}
@@ -240,6 +240,23 @@
     color:var(--paper);padding:7px 11px;text-transform:uppercase;opacity:0;animation:hUp .5s ease 1.05s forwards;
   }
   .hero-visual .float-tag b{color:var(--orange);}
+
+  /* promo slider */
+  .hero-visual .slides{position:absolute;inset:0;z-index:1;}
+  .slide{position:absolute;inset:0;opacity:0;transform:translateX(28px);transition:opacity .45s var(--ease),transform .45s var(--ease);pointer-events:none;}
+  .slide.on{opacity:1;transform:none;pointer-events:auto;}
+  .slide .promo-tag{
+    position:absolute;top:16px;left:16px;z-index:4;background:var(--ink);color:var(--orange);
+    font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.2em;
+    text-transform:uppercase;padding:7px 11px;
+  }
+  .slide .price-chip{opacity:1;animation:none;}
+  .promo-dots{
+    position:absolute;bottom:16px;right:16px;z-index:5;display:flex;gap:8px;
+  }
+  .promo-dot{width:14px;height:14px;border:2px solid var(--ink);background:var(--paper);cursor:pointer;padding:0;transition:.15s;}
+  .promo-dot:hover{background:var(--paper-warm);}
+  .promo-dot.on{background:var(--orange);}
 
   /* ============ TOOLBAR ============ */
   .toolbar{
@@ -589,7 +606,8 @@
     .price{font-size:18px;}
     .add{padding:8px 10px;font-size:10px;box-shadow:2px 2px 0 var(--ink);}
     .add .add-txt{display:none;}
-    .hero h1{font-size:clamp(56px,16vw,84px);}
+    .hero h1{font-size:clamp(48px,14vw,76px);}
+    .brand-name{line-height:1.15;}
     .kcal{font-size:9px;padding:4px 7px;}
   }
 
@@ -677,17 +695,13 @@
       <button class="scroll-link" id="heroScroll">20 platillos disponibles</button>
     </div>
   </div>
-  <div class="hero-visual">
+  <div class="hero-visual" aria-roledescription="carrusel" aria-label="Promociones y combos">
     <div class="frame">
       <span class="corner tl"></span>
       <span class="corner br"></span>
-      <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=900&q=80&auto=format&fit=crop" alt="The Cone Classic" onerror="this.style.display='none';this.parentElement.classList.add('noimg');this.parentElement.dataset.label='THE CONE CLASSIC';">
-      <span class="float-tag"><b>780</b> KCAL</span>
-      <div class="price-chip">
-        <div class="pc-name">THE CONE CLASSIC</div>
-        <div class="pc-price">DESDE Q65</div>
-      </div>
+      <div class="slides" id="promoSlides"></div>
     </div>
+    <div class="promo-dots" id="promoDots" role="tablist" aria-label="Elegir promoción"></div>
   </div>
 </section>
 
@@ -978,6 +992,46 @@ CATS.forEach(c=>spy.observe(document.getElementById(c.id)));
 const goMenu=()=>document.getElementById("burgers").scrollIntoView({behavior:"smooth"});
 document.getElementById("heroCta").onclick=goMenu;
 document.getElementById("heroScroll").onclick=goMenu;
+
+/* ================== PROMO SLIDER ================== */
+const PROMOS=[
+  {tag:"Combo del día",name:"BURGER + FRIES + SODA",price:"Q95",img:"https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=900&q=80&auto=format&fit=crop"},
+  {tag:"Martes 2×1",name:"MILKSHAKES 2×1",price:"SOLO MARTES",img:"https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=900&q=80&auto=format&fit=crop"},
+  {tag:"Combo fuego",name:"JALAPEÑO + LOADED FRIES",price:"Q99",img:"https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?w=900&q=80&auto=format&fit=crop"},
+  {tag:"Tarde de café",name:"LATTE + BROWNIE",price:"Q59 · 3-6 PM",img:"https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=900&q=80&auto=format&fit=crop"},
+];
+(function(){
+  const wrap=document.getElementById("promoSlides");
+  const dots=document.getElementById("promoDots");
+  wrap.innerHTML=PROMOS.map((p,i)=>`
+    <div class="slide${i===0?" on":""}">
+      <img src="${p.img}" alt="${p.name}" loading="${i===0?"eager":"lazy"}" onerror="this.style.display='none'">
+      <span class="promo-tag">${p.tag}</span>
+      <div class="price-chip">
+        <div class="pc-name">${p.name}</div>
+        <div class="pc-price">${p.price}</div>
+      </div>
+    </div>`).join("");
+  dots.innerHTML=PROMOS.map((_,i)=>`<button class="promo-dot${i===0?" on":""}" role="tab" aria-label="Promoción ${i+1}: ${PROMOS[i].tag}"></button>`).join("");
+  const slides=[...wrap.children],ds=[...dots.children];
+  let cur=0,timer=null;
+  function go(i){
+    cur=(i+PROMOS.length)%PROMOS.length;
+    slides.forEach((s,j)=>s.classList.toggle("on",j===cur));
+    ds.forEach((d,j)=>d.classList.toggle("on",j===cur));
+  }
+  function arm(){clearInterval(timer);timer=setInterval(()=>go(cur+1),4200);}
+  ds.forEach((d,i)=>d.onclick=()=>{go(i);arm();});
+  let tx=null;
+  const frame=wrap.closest(".hero-visual");
+  frame.addEventListener("touchstart",e=>tx=e.touches[0].clientX,{passive:true});
+  frame.addEventListener("touchend",e=>{
+    if(tx===null)return;
+    const dx=e.changedTouches[0].clientX-tx;tx=null;
+    if(Math.abs(dx)>40){go(cur+(dx<0?1:-1));arm();}
+  },{passive:true});
+  if(!(typeof matchMedia!=="undefined"&&matchMedia("(prefers-reduced-motion: reduce)").matches))arm();
+})();
 
 /* back to top */
 const btt=document.getElementById("btt");
