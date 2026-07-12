@@ -1,76 +1,38 @@
-# CONE Burgers — Menú Interactivo
+# CONEBurgers — Menú Digital (v2)
 
-Demo independiente del menú digital de CONEBurgers, hereda la identidad del sistema de Loyalty.
+Menú digital estático de CONEBurgers. Un solo `index.html` autónomo — sin dependencias, sin build. Producto white-label de **CONE MEDIA**.
 
-## Stack
-- Vite + React 18
-- Framer Motion para animaciones premium
-- CSS-in-JS (consistente con el proyecto loyalty)
+## Qué incluye
+
+- **Comanda estilo ticket de cocina** con número de orden y tipo de pedido (Mesa / Recoger / Domicilio) que viaja en el mensaje de WhatsApp
+- **Ficha de producto** (bottom sheet) con extras, cantidad y nota para cocina
+- **Búsqueda en vivo** + filtros Top / Picante / Veggie
+- **Upsell automático** en la comanda (sugiere papas, bebida o postre)
+- Animación fly-to-cart, skeleton de carga, marquee de promos
+- **Carrito persistente** (localStorage — sobrevive recargas)
+- Accesibilidad: teclado, reduced-motion, ARIA
 
 ## Correr local
-```bash
-cd menu-demo
-npm install
-npm run dev
-```
 
-Se levanta en `http://localhost:5174`.
+Abre `index.html` en el navegador. Nada más.
 
-## Estructura
-```
-src/
-├── tokens.js                  → design system (colores, fuentes)
-├── data/
-│   ├── menu.js                → catálogo de productos
-│   ├── auth.js                → mock DB (compartida con loyalty)
-│   └── config.js              → whatsapp, sucursales, moneda
-└── components/
-    ├── Splash.jsx             → intro con logo
-    ├── Welcome.jsx            → bienvenida + CTA
-    ├── Login.jsx              → login integrado con loyalty
-    ├── Menu.jsx               → orquestador del menú
-    ├── CategoryNav.jsx        → tabs categorías
-    ├── ProductCard.jsx        → card del producto
-    ├── ProductDetail.jsx      → bottom sheet detalle
-    ├── ProductImage.jsx       → imagen real / placeholder elegante
-    ├── LoyaltyStrip.jsx       → mini-tarjeta loyalty
-    ├── CartFab.jsx            → FAB carrito flotante
-    ├── CartSheet.jsx          → sheet pedido + WhatsApp
-    └── ConeLogo.jsx           → marca SVG
-```
+## Personalización rápida (dentro de `index.html`)
 
-## Demo login
-```
-email:    demo@coneburgers.gt
-password: 1234
-```
+| Qué cambiar | Dónde |
+|---|---|
+| Número de WhatsApp | `const WHATSAPP_NUMBER = ""` — vacío en demo; poner `"502XXXXXXXX"` (sin +) |
+| Productos, precios, calorías | Array `const MENU = [...]` |
+| Extras por categoría | Objeto `const EXTRAS = {...}` |
+| Promos del marquee | Variable `items` en la sección MARQUEE |
+| Horario "Cocina abierta" | Buscar `11:00 – 22:00` |
+| Moneda | `const CUR = "Q"` |
 
-Roberto ya tiene 8/12 sellos. Al pedir un Smash más, gana sellos. Al llegar a 12 puede canjear su combo gratis aplicándolo a una hamburguesa.
+> **Demo:** con `WHATSAPP_NUMBER` vacío, el botón abre WhatsApp con el mensaje listo y el selector de contacto (sin destinatario fijo).
 
-## Personalizar
-- **Número de WhatsApp**: editar `src/data/config.js` → `whatsapp` (formato internacional sin `+`)
-- **Sucursales**: array `branches` en el mismo archivo
-- **Productos**: `src/data/menu.js` — todos los campos editables
-- **Fotos reales**: cada producto tiene `imageRef` (URL Unsplash como referencia visual). Para subir tus propias fotos: cámbialas por la URL o ruta local. Si la imagen no carga, aparece un placeholder SVG elegante con la identidad CONE.
+## Deploy
 
-## Flujo
-```
-Splash → Welcome → [Login | Invitado] → Menu
-                                          ├─ tap card → ProductDetail (sheet)
-                                          ├─ + agregar → CartFab
-                                          └─ FAB → CartSheet → WhatsApp
-```
-
-## Integración con Loyalty
-- Sesión compartida vía `localStorage` (`cone_menu_session`)
-- Si el usuario está logueado:
-  - Mini-tarjeta de sellos sticky con barra de progreso
-  - Badge "+1 SELLO" en productos elegibles (smash)
-  - Recomendación basada en favorito/historial
-  - Carrito muestra sellos a ganar
-  - Si tiene 12/12 sellos: checkbox para usar combo gratis (descuenta el smash)
-- Mensaje de WhatsApp incluye datos del miembro y sellos a ganar
+Vercel despliega automáticamente en cada push a `main`. El `vercel.json` fuerza sitio estático (sin framework ni build), así no hay que tocar la configuración del proyecto.
 
 ---
 
-Powered by **CONEMedia**.
+Powered by **CONE MEDIA**.
